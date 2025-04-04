@@ -1,0 +1,14 @@
+---
+title: "Jenny Li"
+image: "image/IMG_8922.JPG"
+about: 
+  template: jolla
+  links: 
+    - icon: envelope
+      href: mailto:jjennyyll0323@gmail.com
+    - icon: linkedin
+      href: https://www.linkedin.com/in/jenny-li-589241255
+
+---
+
+Here is a paragraph about me!
