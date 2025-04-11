@@ -19,5 +19,54 @@
     "title": "Resume",
     "section": "",
     "text": "Download PDF file."
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "My Projects",
+    "section": "",
+    "text": "This is Project 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis is Project 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/project2/index.html",
+    "href": "blog/project2/index.html",
+    "title": "This is Project 2",
+    "section": "",
+    "text": "I cleaned some data\n\n\n\nI analyzed the data"
+  },
+  {
+    "objectID": "blog/project2/index.html#section-1-data",
+    "href": "blog/project2/index.html#section-1-data",
+    "title": "This is Project 2",
+    "section": "",
+    "text": "I cleaned some data"
+  },
+  {
+    "objectID": "blog/project2/index.html#section-2-analysis",
+    "href": "blog/project2/index.html#section-2-analysis",
+    "title": "This is Project 2",
+    "section": "",
+    "text": "I analyzed the data"
+  },
+  {
+    "objectID": "blog/project1/index.html",
+    "href": "blog/project1/index.html",
+    "title": "This is Project 1",
+    "section": "",
+    "text": "I cleaned some data\n\n\n\nI analyzed the data"
+  },
+  {
+    "objectID": "blog/project1/index.html#section-1-data",
+    "href": "blog/project1/index.html#section-1-data",
+    "title": "This is Project 1",
+    "section": "",
+    "text": "I cleaned some data"
+  },
+  {
+    "objectID": "blog/project1/index.html#section-2-analysis",
+    "href": "blog/project1/index.html#section-2-analysis",
+    "title": "This is Project 1",
+    "section": "",
+    "text": "I analyzed the data"
   }
 ]
