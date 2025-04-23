@@ -16,5 +16,11 @@
   },
   "blog/project1/index.qmd": {
     "index.html": "2aec8fe0"
+  },
+  "blog/project1/hw1.ipynb": {
+    "hw1.html": "da322116"
+  },
+  "blog/project1/hw1_questions.qmd": {
+    "hw1_questions.html": "6c1be0a1"
   }
 }
