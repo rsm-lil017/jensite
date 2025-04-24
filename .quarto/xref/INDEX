@@ -22,5 +22,11 @@
   },
   "blog/project1/hw1_questions.qmd": {
     "hw1_questions.html": "6c1be0a1"
+  },
+  "blog/hw1/hw1_questions.qmd": {
+    "hw1_questions.html": "a14429a0"
+  },
+  "hw1.ipynb": {
+    "hw1.html": "2539dd38"
   }
 }
