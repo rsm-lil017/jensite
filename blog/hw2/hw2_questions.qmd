@@ -1,7 +1,7 @@
 ---
 title: "Poisson Regression Examples"
 author: "Jenny Li"
-date: today
+date: May 7, 2025
 callout-appearance: minimal # this hides the blue "i" icon on .callout-notes
 ---
 
@@ -79,38 +79,22 @@ Then, I compared regions and ages by customer status. The comparisons show notab
 
 ### Estimation of Simple Poisson Model
 
-Since our outcome variable of interest can only be small integer values per a set unit of time, we can use a Poisson density to model the number of patents awarded to each engineering firm over the last 5 years. We start by estimating a simple Poisson model via Maximum Likelihood.
+Since our outcome variable of interest can only be small integer values per a set unit of time, we use a Poisson distribution to model the number of patents awarded to each engineering firm over the last 5 years. We start by estimating a simple Poisson model via Maximum Likelihood.
 
-For independent observations \( Y_1, Y_2, \ldots, Y_n \sim \text{Poisson}(\lambda) \), **the likelihood function** is:
-
-\[
-L(\lambda \mid \mathbf{Y}) = \prod_{i=1}^n \frac{e^{-\lambda} \lambda^{Y_i}}{Y_i!}
-= \frac{e^{-n\lambda} \lambda^{\sum Y_i}}{\prod Y_i!}
-\]
-
-Taking the natural logarithm of the likelihood, we obtain **the log-likelihood**:
+For independent observations \( Y_1, Y_2, \ldots, Y_n \sim \text{Poisson}(\lambda) \), the likelihood function is:
 
 \[
-\ell(\lambda \mid \mathbf{Y}) = \log L(\lambda \mid \mathbf{Y}) 
-= -n\lambda + \left( \sum Y_i \right) \log \lambda - \sum \log(Y_i!)
+L(\lambda \mid Y) = \prod_{i=1}^n \frac{e^{-\lambda} \lambda^{Y_i}}{Y_i!} = \frac{e^{-n\lambda} \lambda^{\sum Y_i}}{\prod Y_i!}
 \]
 
-Below is how to code the log-likelihood function for the Poisson model in R. 
-```
-poisson_loglikelihood <- function(lambda, Y){
-   if (lambda <= 0) return(-Inf)  
-   ll <- sum(-lambda + Y * log(lambda) - lfactorial(Y))
-   return(ll)
-}
+Taking the natural logarithm of the likelihood, we obtain the log-likelihood:
 
-# Example: maximize using optim
-Y <- c(2, 3, 1, 0, 4)  # example data
-out <- optim(par=1, fn=function(lambda) -poisson_loglikelihood(lambda, Y), method="Brent", lower=0.001, upper=10)
-out$par  
 
-```
+\[
+\ell(\lambda \mid Y) = \log L(\lambda \mid Y) = -n\lambda + \left( \sum Y_i \right) \log \lambda - \sum \log(Y_i!)
+\]
 
-This is how to code in python.
+This is how to code in Python.
 
 ```{python}
 import numpy as np
@@ -144,7 +128,7 @@ plt.show()
 ```
 Now, I used the log-likelihood function to create a plot with lambda values on the horizontal axis and the corresponding log-likelihood values on the vertical axis, using the observed number of patents as input for 𝑌.
 
-If desired, we can take the first derivative of the log-likelihood, set it equal to zero, and solve for \( \lambda \). This yields the MLE \( \hat{\lambda} = \bar{Y} \), which aligns with our intuition, since the mean of a Poisson distribution is \( \lambda \). Steps are shown below:
+If desired, we can take the first derivative of the log-likelihood, set it equal to zero, and solve for \( \lambda \). This yields the MLE \( \hat{\lambda} = \bar{Y} \), which aligns with our intuition since the mean of a Poisson distribution is \( \lambda \). The steps are shown below:
 
 Taking the derivative with respect to \( \lambda \):
 
@@ -201,70 +185,73 @@ poisson_regression_likelihood <- function(beta, Y, X){lambda <- exp(X %*% beta) 
 
 In python, it looks like: 
 ```{python}
+from scipy.special import gammaln
+from scipy.optimize import minimize
+import math
+
 def poisson_regression_loglikelihood(beta, Y, X):
-    lambda_ = np.exp(X @ beta)  # inverse link: exp(X @ beta)
-    if np.any(lambda_ <= 0):  # guard for numerical issues
+    beta = np.asarray(beta).ravel()
+    X = np.asarray(X)
+    Y = np.asarray(Y)
+    linpred = X.dot(beta)
+    linpred = np.clip(linpred, -100, 100)
+    mu = np.array([math.exp(val) for val in linpred])
+    if np.any(mu <= 0) or np.any(np.isnan(mu)):
         return -np.inf
-    ll = np.sum(-lambda_ + Y * np.log(lambda_) - gammaln(Y + 1))
-    return -ll
+    return np.sum(Y * np.log(mu) - mu - gammaln(Y + 1))
 ```
 
 ```{python}
 import statsmodels.api as sm 
-from scipy.optimize import minimize
 
-# Ensure age_sq exists
-df1['age_sq'] = df1['age'] ** 2
-
-# Create dummy variables for region (drop first to avoid multicollinearity)
-if 'region' in df1.columns:
-    df1 = pd.get_dummies(df1, columns=['region'], drop_first=True)
-
-# Define covariate columns in correct order
-region_dummies = [col for col in df1.columns if col.startswith('region_') and col != 'region_Southwest']
-X_cols = ['age', 'age_sq'] + region_dummies + ['iscustomer']
-
-# Construct X matrix: constant first, then all covariates
-X = df1[X_cols]
-X.insert(0, 'Intercept', 1.0)  # Ensures first column is all 1's
-
-# Convert to float (safe for optimization)
-X = X.astype(float)
-
-# Response variable
+df1['age_squared'] = df1['age'] ** 2
+region_dummies = pd.get_dummies(df1['region'], drop_first=True)
+X = pd.concat([pd.Series(1, index=df1.index, name='intercept'),
+    df1[['age', 'age_squared', 'iscustomer']],
+    region_dummies], axis=1)
 Y = df1['patents'].values
+X_matrix = X.values
 
-# Initial guess
-beta_init = np.zeros(X.shape[1])
+def neg_loglikelihood(beta, Y, X):
+    return -poisson_regression_loglikelihood(beta, Y, X)
 
-# Use BFGS method for optimization
-result = minimize(poisson_regression_loglikelihood, beta_init, args=(Y, X), method='BFGS')
+# Optimize to find MLE
+initial_beta = np.zeros(X_matrix.shape[1])
+result = minimize(neg_loglikelihood, x0=initial_beta, args=(Y, X_matrix), method='BFGS')
 
-# Extract results
-beta_hat = result.x
-hessian = result.hess_inv
-standard_errors = np.sqrt(np.diag(hessian))
+# Extract MLE and Hessian inverse
+beta_mle = result.x
+hess_inv = result.hess_inv
+# Ensure Hessian inverse is array
+if not isinstance(hess_inv, np.ndarray):
+    hess_inv = hess_inv.todense()
+hess_inv = np.asarray(hess_inv)
 
-# Output table
-coef_table = pd.DataFrame({
-    'Coefficient': beta_hat,
-    'Std. Error': standard_errors
+# Compute standard errors
+std_errors = np.sqrt(np.diag(hess_inv))
+
+# Build results table
+results_df = pd.DataFrame({
+    "Coefficient": beta_mle,
+    "Std. Error": std_errors
 }, index=X.columns)
-
-print(coef_table)
+results_df
 ```
 ```{python}
 # Fit a Poisson regression model using sm.GLM
+# Fit a Poisson regression model using sm.GLM
+X = X.astype(float)
+Y = Y.astype(float)
 poisson_model = sm.GLM(Y, X, family=sm.families.Poisson())
 poisson_results = poisson_model.fit()
+
+# Display the summary of the results
 print(poisson_results.summary())
 
+# Compare coefficients from sm.GLM with your results
 glm_coefficients = poisson_results.params
 print("\nCoefficients from sm.GLM:")
 print(glm_coefficients)
-
-print("\nCoefficients from my optimization:")
-print(beta_hat)
 ```
 
 The results show that age is positively associated with the number of patents, suggesting that more established firms tend to be more innovative. However, the negative coefficient on age squared indicates a diminishing return — as firms get older, the increase in patenting tapers off. This non-linear relationship is statistically significant and aligns with the idea that younger firms grow in innovation at first, but eventually plateau.
@@ -272,6 +259,56 @@ The results show that age is positively associated with the number of patents, s
 The region coefficients are not statistically significant, meaning that, after controlling for other factors, location does not appear to have a strong influence on patent activity.
 
 Importantly, the variable iscustomer — indicating whether the firm uses Blueprinty’s software — is positive and highly significant. The coefficient of 0.2080 implies that, all else equal, firms that are customers of Blueprinty tend to have more patent awards. Since the model uses a log link, we can interpret this roughly as a ~23% increase in the expected number of patents (exp(0.208) ≈ 1.231). This supports the claim that firms using Blueprinty’s tools are more successful in securing patents, although causality cannot be established without further analysis.
+
+To better understand the effect of Blueprinty’s software on patent success, we simulate two hypothetical scenarios. First, we create two versions of the dataset: one in which no firms use the software (`X_0`, with `iscustomer = 0` for all observations), and another where all firms do (`X_1`, with `iscustomer = 1`). Using the fitted Poisson model, we predict the expected number of patents for each firm under both scenarios, generating `y_pred_0` and `y_pred_1`. We then calculate the difference in predictions for each firm and take the average of those differences to estimate the overall effect of using Blueprinty’s software.
+
+```{python}
+def construct_design_matrix(df1, is_customer=None, region_dummies=None):
+    # Build base matrix
+    X = pd.DataFrame({
+        'Intercept': 1.0,
+        'age': df1['age'].astype(float),
+        'age_squared': df1['age_squared'].astype(float),
+    }, index=df1.index)
+    
+    # Add region dummy variables if provided
+    if region_dummies is not None:
+        region_dummies = region_dummies.astype(float)
+        X = pd.concat([X, region_dummies], axis=1)
+
+    # Add or override iscustomer column
+    if is_customer is None:
+        X['iscustomer'] = df1['iscustomer'].astype(float)
+    else:
+        X['iscustomer'] = float(is_customer)
+
+    # Reorder columns for consistency
+    column_order = ['Intercept', 'age', 'age_squared', 'iscustomer'] + list(region_dummies.columns)
+    return X[column_order]
+```
+
+```{python}
+# Build design matrices
+X_full = construct_design_matrix(df1, region_dummies=region_dummies)
+X_0 = construct_design_matrix(df1, is_customer=0, region_dummies=region_dummies)
+X_1 = construct_design_matrix(df1, is_customer=1, region_dummies=region_dummies)
+
+# Define outcome variable
+Y = df1['patents'].astype(float)
+
+# Fit Poisson model using GLM
+poisson_model = sm.GLM(Y, X_full, family=sm.families.Poisson())
+poisson_result = poisson_model.fit()
+
+# Predict counterfactual outcomes
+y_pred_0 = poisson_result.predict(X_0)
+y_pred_1 = poisson_result.predict(X_1)
+
+# Calculate average treatment effect
+avg_effect = np.mean(y_pred_1 - y_pred_0)
+avg_effect
+```
+On average, firms that use Blueprinty’s software are predicted to produce about 0.79 more patents than they would if they weren’t customers, assuming all other factors remain the same.
 
 
 ## AirBnB Case Study
