@@ -81,18 +81,16 @@ Then, I compared regions and ages by customer status. The comparisons show notab
 
 Since our outcome variable of interest can only be small integer values per a set unit of time, we use a Poisson distribution to model the number of patents awarded to each engineering firm over the last 5 years. We start by estimating a simple Poisson model via Maximum Likelihood.
 
-For independent observations \( Y_1, Y_2, \ldots, Y_n \sim \text{Poisson}(\lambda) \), the likelihood function is:
+For independent observations Y₁, Y₂, ..., Yₙ ~ Poisson(λ),
+the likelihood function is:
 
-\[
-L(\lambda \mid Y) = \prod_{i=1}^n \frac{e^{-\lambda} \lambda^{Y_i}}{Y_i!} = \frac{e^{-n\lambda} \lambda^{\sum Y_i}}{\prod Y_i!}
-\]
+L(λ | Y) = ∏[i=1 to n] [e^(−λ) * λ^(Yᵢ) / Yᵢ!]
+         = e^(−nλ) * λ^(∑Yᵢ) / ∏Yᵢ!
 
 Taking the natural logarithm of the likelihood, we obtain the log-likelihood:
 
-
-\[
-\ell(\lambda \mid Y) = \log L(\lambda \mid Y) = -n\lambda + \left( \sum Y_i \right) \log \lambda - \sum \log(Y_i!)
-\]
+ℓ(λ | Y) = log L(λ | Y)
+         = −nλ + (∑Yᵢ) * log(λ) − ∑log(Yᵢ!)
 
 This is how to code in Python.
 
@@ -128,25 +126,19 @@ plt.show()
 ```
 Now, I used the log-likelihood function to create a plot with lambda values on the horizontal axis and the corresponding log-likelihood values on the vertical axis, using the observed number of patents as input for 𝑌.
 
-If desired, we can take the first derivative of the log-likelihood, set it equal to zero, and solve for \( \lambda \). This yields the MLE \( \hat{\lambda} = \bar{Y} \), which aligns with our intuition since the mean of a Poisson distribution is \( \lambda \). The steps are shown below:
+To find the MLE for λ in a Poisson distribution:
 
-Taking the derivative with respect to \( \lambda \):
+1. Take the derivative of the log-likelihood with respect to λ:
 
-\[
-\frac{d\ell}{d\lambda} = -n + \frac{\sum Y_i}{\lambda}
-\]
+   dℓ/dλ = -n + (ΣYᵢ)/λ
 
-Set the derivative equal to zero:
+2. Set the derivative equal to zero:
 
-\[
--n + \frac{\sum Y_i}{\lambda} = 0
-\]
+   -n + (ΣYᵢ)/λ = 0
 
-Solve for \( \lambda \):
+3. Solve for λ:
 
-\[
-\lambda = \frac{\sum Y_i}{n} = \bar{Y}
-\]
+   λ = (ΣYᵢ)/n = Ȳ
 
 Following are how to code this in python.
 ```{python}

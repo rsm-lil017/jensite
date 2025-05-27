@@ -157,13 +157,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div id="68caaaa7" class="cell" data-execution_count="2">
+<div id="68caaaa7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="092cc8fd" class="cell" data-execution_count="3">
+<div id="092cc8fd" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.read_csv(<span class="st">"~/Desktop/MSBA/SP/MGTA495b/hw2/blueprinty.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df1.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -219,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="0b974a73" class="cell" data-execution_count="4">
+<div id="0b974a73" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>customers <span class="op">=</span> df1[df1[<span class="st">'iscustomer'</span>] <span class="op">==</span> <span class="dv">1</span>]</span>
@@ -251,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Mean number of patents for non-customers: 3.4730127576054954</code></pre>
 </div>
 </div>
-<div id="0025a997" class="cell" data-execution_count="5">
+<div id="0025a997" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar plot for region distribution by customer status</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>region_counts <span class="op">=</span> df1.groupby([<span class="st">'region'</span>, <span class="st">'iscustomer'</span>]).size().unstack()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>region_counts.plot(kind<span class="op">=</span><span class="st">'bar'</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
@@ -297,7 +297,7 @@ Mean number of patents for non-customers: 3.4730127576054954</code></pre>
 Mean age of patents for non-customers: 26.101570166830225</code></pre>
 </div>
 </div>
-<div id="7a485a85" class="cell" data-execution_count="6">
+<div id="7a485a85" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gammaln</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize_scalar</span>
@@ -318,7 +318,7 @@ Mean age of patents for non-customers: 26.101570166830225</code></pre>
 <pre><code>Estimated lambda: 2.000000014292129</code></pre>
 </div>
 </div>
-<div id="affc9c63" class="cell" data-execution_count="19">
+<div id="affc9c63" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a range of lambda values</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>lambda_values <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -343,7 +343,7 @@ Mean age of patents for non-customers: 26.101570166830225</code></pre>
 </div>
 </div>
 </div>
-<div id="2d29cf1a" class="cell" data-execution_count="20">
+<div id="2d29cf1a" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the negative log-likelihood function</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> neg_log_likelihood(lambda_):</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> lambda_ <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
@@ -366,93 +366,154 @@ Mean age of patents for non-customers: 26.101570166830225</code></pre>
 Sample mean of Y (Ȳ): 3.6847</code></pre>
 </div>
 </div>
-<div id="fbf9339f" class="cell" data-execution_count="36">
+<div id="fbf9339f" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_regression_loglikelihood(beta, Y, X):</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    lambda_ <span class="op">=</span> np.exp(X <span class="op">@</span> beta)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.<span class="bu">any</span>(lambda_ <span class="op">&lt;=</span> <span class="dv">0</span>):</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.inf</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">=</span> np.<span class="bu">sum</span>(<span class="op">-</span>lambda_ <span class="op">+</span> Y <span class="op">*</span> np.log(lambda_) <span class="op">-</span> gammaln(Y <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>ll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> np.asarray(beta).ravel()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.asarray(X)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> np.asarray(Y)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    linpred <span class="op">=</span> X.dot(beta)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    linpred <span class="op">=</span> np.clip(linpred, <span class="op">-</span><span class="dv">100</span>, <span class="dv">100</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.array([math.exp(val) <span class="cf">for</span> val <span class="kw">in</span> linpred])</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.<span class="bu">any</span>(mu <span class="op">&lt;=</span> <span class="dv">0</span>) <span class="kw">or</span> np.<span class="bu">any</span>(np.isnan(mu)):</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span>np.inf</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(Y <span class="op">*</span> np.log(mu) <span class="op">-</span> mu <span class="op">-</span> gammaln(Y <span class="op">+</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="900e4c20" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure age_sq exists</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>df1[<span class="st">'age_sq'</span>] <span class="op">=</span> df1[<span class="st">'age'</span>] <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dummy variables for region (drop first to avoid multicollinearity)</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'region'</span> <span class="kw">in</span> df1.columns:</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    df1 <span class="op">=</span> pd.get_dummies(df1, columns<span class="op">=</span>[<span class="st">'region'</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<div id="17edc677" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gammaln</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_regression_loglikelihood(beta, Y, X):</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ensure input arrays are in correct shape</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> np.asarray(beta).ravel()</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.asarray(X)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> np.asarray(Y)</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Define covariate columns in correct order</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>region_dummies <span class="op">=</span> [col <span class="cf">for</span> col <span class="kw">in</span> df1.columns <span class="cf">if</span> col.startswith(<span class="st">'region_'</span>) <span class="kw">and</span> col <span class="op">!=</span> <span class="st">'region_Southwest'</span>]</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>X_cols <span class="op">=</span> [<span class="st">'age'</span>, <span class="st">'age_sq'</span>] <span class="op">+</span> region_dummies <span class="op">+</span> [<span class="st">'iscustomer'</span>]</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute linear predictor</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    linpred <span class="op">=</span> X.dot(beta)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    linpred <span class="op">=</span> np.clip(linpred, <span class="op">-</span><span class="dv">100</span>, <span class="dv">100</span>)  <span class="co"># Avoid overflow in exp()</span></span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct X matrix: constant first, then all covariates</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df1[X_cols]</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>X.insert(<span class="dv">0</span>, <span class="st">'Intercept'</span>, <span class="fl">1.0</span>)  <span class="co"># Ensures first column is all 1's</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to float (safe for optimization)</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X.astype(<span class="bu">float</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Manually apply inverse link using math.exp (your original style)</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.array([math.exp(val) <span class="cf">for</span> val <span class="kw">in</span> linpred])</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Guard against invalid values</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.<span class="bu">any</span>(mu <span class="op">&lt;=</span> <span class="dv">0</span>) <span class="kw">or</span> np.<span class="bu">any</span>(np.isnan(mu)):</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span>np.inf</span>
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Response variable</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> df1[<span class="st">'patents'</span>].values</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial guess</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>beta_init <span class="op">=</span> np.zeros(X.shape[<span class="dv">1</span>])</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Use BFGS method for optimization</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(poisson_regression_loglikelihood, beta_init, args<span class="op">=</span>(Y, X), method<span class="op">=</span><span class="st">'BFGS'</span>)</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract results</span></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>beta_hat <span class="op">=</span> result.x</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>hessian <span class="op">=</span> result.hess_inv</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>standard_errors <span class="op">=</span> np.sqrt(np.diag(hessian))</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Output table</span></span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>coef_table <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Coefficient'</span>: beta_hat,</span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Std. Error'</span>: standard_errors</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>X.columns)</span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coef_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                  Coefficient  Std. Error
-Intercept                 0.0         1.0
-age                       0.0         1.0
-age_sq                    0.0         1.0
-region_Northeast          0.0         1.0
-region_Northwest          0.0         1.0
-region_South              0.0         1.0
-iscustomer                0.0         1.0</code></pre>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return log-likelihood (negated for minimization)</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">=</span> np.<span class="bu">sum</span>(Y <span class="op">*</span> np.log(mu) <span class="op">-</span> mu <span class="op">-</span> gammaln(Y <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>ll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/opt/conda/lib/python3.12/site-packages/pandas/core/arraylike.py:399: RuntimeWarning: overflow encountered in exp
-  result = getattr(ufunc, method)(*inputs, **kwargs)
-/opt/conda/lib/python3.12/site-packages/numpy/core/_methods.py:49: RuntimeWarning: overflow encountered in reduce
-  return umr_sum(a, axis, dtype, out, keepdims, initial, where)
-/opt/conda/lib/python3.12/site-packages/scipy/optimize/_numdiff.py:590: RuntimeWarning: invalid value encountered in subtract
-  df = fun(x) - f0
-/opt/conda/lib/python3.12/site-packages/pandas/core/arraylike.py:399: RuntimeWarning: overflow encountered in exp
-  result = getattr(ufunc, method)(*inputs, **kwargs)</code></pre>
+<div id="900e4c20" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>df1[<span class="st">'age_squared'</span>] <span class="op">=</span> df1[<span class="st">'age'</span>] <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>region_dummies <span class="op">=</span> pd.get_dummies(df1[<span class="st">'region'</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.concat([pd.Series(<span class="dv">1</span>, index<span class="op">=</span>df1.index, name<span class="op">=</span><span class="st">'intercept'</span>),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    df1[[<span class="st">'age'</span>, <span class="st">'age_squared'</span>, <span class="st">'iscustomer'</span>]],</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    region_dummies], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> df1[<span class="st">'patents'</span>].values</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>X_matrix <span class="op">=</span> X.values</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> neg_loglikelihood(beta, Y, X):</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>poisson_regression_loglikelihood(beta, Y, X)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize to find MLE</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>initial_beta <span class="op">=</span> np.zeros(X_matrix.shape[<span class="dv">1</span>])</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(neg_loglikelihood, x0<span class="op">=</span>initial_beta, args<span class="op">=</span>(Y, X_matrix), method<span class="op">=</span><span class="st">'BFGS'</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract MLE and Hessian inverse</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>beta_mle <span class="op">=</span> result.x</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>hess_inv <span class="op">=</span> result.hess_inv</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure Hessian inverse is array</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(hess_inv, np.ndarray):</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    hess_inv <span class="op">=</span> hess_inv.todense()</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>hess_inv <span class="op">=</span> np.asarray(hess_inv)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute standard errors</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>std_errors <span class="op">=</span> np.sqrt(np.diag(hess_inv))</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Build results table</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>results_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Coefficient"</span>: beta_mle,</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Std. Error"</span>: std_errors</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>X.columns)</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>results_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Coefficient</th>
+<th data-quarto-table-cell-role="th">Std. Error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">intercept</td>
+<td>-2.626242</td>
+<td>0.999999</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">age</td>
+<td>-18.395174</td>
+<td>0.999324</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">age_squared</td>
+<td>-0.330218</td>
+<td>0.036795</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">iscustomer</td>
+<td>0.139974</td>
+<td>1.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Northeast</td>
+<td>0.161987</td>
+<td>1.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Northwest</td>
+<td>-0.958575</td>
+<td>1.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">South</td>
+<td>-1.954303</td>
+<td>1.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Southwest</td>
+<td>0.074678</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
-<div id="db2a4aac" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a Poisson regression model using sm.GLM</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>poisson_model <span class="op">=</span> sm.GLM(Y, X, family<span class="op">=</span>sm.families.Poisson())</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>poisson_results <span class="op">=</span> poisson_model.fit()</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the summary of the results</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(poisson_results.summary())</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare coefficients from sm.GLM with your results</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>glm_coefficients <span class="op">=</span> poisson_results.params</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Coefficients from sm.GLM:"</span>)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(glm_coefficients)</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Coefficients from your optimization:"</span>)</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beta_hat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="db2a4aac" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a Poisson regression model using sm.GLM</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X.astype(<span class="bu">float</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> Y.astype(<span class="bu">float</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>poisson_model <span class="op">=</span> sm.GLM(Y, X, family<span class="op">=</span>sm.families.Poisson())</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>poisson_results <span class="op">=</span> poisson_model.fit()</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the summary of the results</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(poisson_results.summary())</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare coefficients from sm.GLM with your results</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>glm_coefficients <span class="op">=</span> poisson_results.params</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Coefficients from sm.GLM:"</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(glm_coefficients)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Generalized Linear Model Regression Results                  
 ==============================================================================
@@ -461,42 +522,87 @@ Model:                            GLM   Df Residuals:                     1492
 Model Family:                 Poisson   Df Model:                            7
 Link Function:                    Log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -3258.1
-Date:                Tue, 06 May 2025   Deviance:                       2143.3
-Time:                        15:48:32   Pearson chi2:                 2.07e+03
+Date:                Wed, 07 May 2025   Deviance:                       2143.3
+Time:                        23:29:06   Pearson chi2:                 2.07e+03
 No. Iterations:                     5   Pseudo R-squ. (CS):             0.1360
 Covariance Type:            nonrobust                                         
-====================================================================================
-                       coef    std err          z      P&gt;|z|      [0.025      0.975]
-------------------------------------------------------------------------------------
-Intercept           -0.5089      0.183     -2.778      0.005      -0.868      -0.150
-age                  0.1486      0.014     10.716      0.000       0.121       0.176
-age_sq              -0.0030      0.000    -11.513      0.000      -0.003      -0.002
-region_Northeast     0.0292      0.044      0.669      0.504      -0.056       0.115
-region_Northwest    -0.0176      0.054     -0.327      0.744      -0.123       0.088
-region_South         0.0566      0.053      1.074      0.283      -0.047       0.160
-region_Southwest     0.0506      0.047      1.072      0.284      -0.042       0.143
-iscustomer           0.2076      0.031      6.719      0.000       0.147       0.268
-====================================================================================
+===============================================================================
+                  coef    std err          z      P&gt;|z|      [0.025      0.975]
+-------------------------------------------------------------------------------
+intercept      -0.5089      0.183     -2.778      0.005      -0.868      -0.150
+age             0.1486      0.014     10.716      0.000       0.121       0.176
+age_squared    -0.0030      0.000    -11.513      0.000      -0.003      -0.002
+iscustomer      0.2076      0.031      6.719      0.000       0.147       0.268
+Northeast       0.0292      0.044      0.669      0.504      -0.056       0.115
+Northwest      -0.0176      0.054     -0.327      0.744      -0.123       0.088
+South           0.0566      0.053      1.074      0.283      -0.047       0.160
+Southwest       0.0506      0.047      1.072      0.284      -0.042       0.143
+===============================================================================
 
 Coefficients from sm.GLM:
-Intercept          -0.508920
-age                 0.148619
-age_sq             -0.002970
-region_Northeast    0.029170
-region_Northwest   -0.017575
-region_South        0.056561
-region_Southwest    0.050576
-iscustomer          0.207591
-dtype: float64
-
-Coefficients from your optimization:
-[0. 0. 0. 0. 0. 0. 0. 0.]</code></pre>
+intercept     -0.508920
+age            0.148619
+age_squared   -0.002970
+iscustomer     0.207591
+Northeast      0.029170
+Northwest     -0.017575
+South          0.056561
+Southwest      0.050576
+dtype: float64</code></pre>
 </div>
 </div>
-<div id="819fd0d1" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"~/Desktop/MSBA/SP/MGTA495b/hw2/airbnb.csv"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="43">
+<div id="3815e783" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> construct_design_matrix(df1, is_customer<span class="op">=</span><span class="va">None</span>, region_dummies<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Build base matrix</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Intercept'</span>: <span class="fl">1.0</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'age'</span>: df1[<span class="st">'age'</span>].astype(<span class="bu">float</span>),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'age_squared'</span>: df1[<span class="st">'age_squared'</span>].astype(<span class="bu">float</span>),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    }, index<span class="op">=</span>df1.index)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add region dummy variables if provided</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> region_dummies <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>        region_dummies <span class="op">=</span> region_dummies.astype(<span class="bu">float</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> pd.concat([X, region_dummies], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add or override iscustomer column</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> is_customer <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>        X[<span class="st">'iscustomer'</span>] <span class="op">=</span> df1[<span class="st">'iscustomer'</span>].astype(<span class="bu">float</span>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        X[<span class="st">'iscustomer'</span>] <span class="op">=</span> <span class="bu">float</span>(is_customer)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reorder columns for consistency</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    column_order <span class="op">=</span> [<span class="st">'Intercept'</span>, <span class="st">'age'</span>, <span class="st">'age_squared'</span>, <span class="st">'iscustomer'</span>] <span class="op">+</span> <span class="bu">list</span>(region_dummies.columns)</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X[column_order]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="88b52df3" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build design matrices</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>X_full <span class="op">=</span> construct_design_matrix(df1, region_dummies<span class="op">=</span>region_dummies)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>X_0 <span class="op">=</span> construct_design_matrix(df1, is_customer<span class="op">=</span><span class="dv">0</span>, region_dummies<span class="op">=</span>region_dummies)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>X_1 <span class="op">=</span> construct_design_matrix(df1, is_customer<span class="op">=</span><span class="dv">1</span>, region_dummies<span class="op">=</span>region_dummies)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define outcome variable</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> df1[<span class="st">'patents'</span>].astype(<span class="bu">float</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Poisson model using GLM</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>poisson_model <span class="op">=</span> sm.GLM(Y, X_full, family<span class="op">=</span>sm.families.Poisson())</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>poisson_result <span class="op">=</span> poisson_model.fit()</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict counterfactual outcomes</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>y_pred_0 <span class="op">=</span> poisson_result.predict(X_0)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>y_pred_1 <span class="op">=</span> poisson_result.predict(X_1)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate average treatment effect</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>average_effect <span class="op">=</span> np.mean(y_pred_1 <span class="op">-</span> y_pred_0)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>average_effect</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>0.7927680710452771</code></pre>
+</div>
+</div>
+<div id="819fd0d1" class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"~/Desktop/MSBA/SP/MGTA495b/hw2/airbnb.csv"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
 
@@ -612,78 +718,57 @@ Coefficients from your optimization:
 </div>
 </div>
 </div>
-<div id="7caddb6c" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Data cleaning</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>vars_to_keep <span class="op">=</span> [</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'number_of_reviews'</span>, <span class="st">'days'</span>, <span class="st">'room_type'</span>, <span class="st">'bathrooms'</span>, <span class="st">'bedrooms'</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'price'</span>, <span class="st">'review_scores_cleanliness'</span>, <span class="st">'review_scores_location'</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'review_scores_value'</span>, <span class="st">'instant_bookable'</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[vars_to_keep].dropna()</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Feature engineering</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'instant_bookable'</span>] <span class="op">=</span> (df[<span class="st">'instant_bookable'</span>] <span class="op">==</span> <span class="st">'t'</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.get_dummies(df, columns<span class="op">=</span>[<span class="st">'room_type'</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Build covariate matrix</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>X_cols <span class="op">=</span> [</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'days'</span>, <span class="st">'bathrooms'</span>, <span class="st">'bedrooms'</span>, <span class="st">'price'</span>,</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'review_scores_cleanliness'</span>, <span class="st">'review_scores_location'</span>,</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'review_scores_value'</span>, <span class="st">'instant_bookable'</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>] <span class="op">+</span> [col <span class="cf">for</span> col <span class="kw">in</span> df.columns <span class="cf">if</span> col.startswith(<span class="st">'room_type_'</span>)]</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(df[X_cols]).astype(<span class="bu">float</span>)</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> df[<span class="st">'number_of_reviews'</span>].astype(<span class="bu">int</span>).values</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Define Poisson log-likelihood</span></span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_loglikelihood(beta, Y, X):</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    lambda_ <span class="op">=</span> np.exp(X <span class="op">@</span> beta)</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.<span class="bu">any</span>(lambda_ <span class="op">&lt;=</span> <span class="dv">0</span>):</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.inf</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">=</span> np.<span class="bu">sum</span>(<span class="op">-</span>lambda_ <span class="op">+</span> Y <span class="op">*</span> np.log(lambda_) <span class="op">-</span> gammaln(Y <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>ll  <span class="co"># Negative log-likelihood for minimization</span></span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Fit model</span></span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>beta_init <span class="op">=</span> np.zeros(X.shape[<span class="dv">1</span>])</span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(poisson_loglikelihood, beta_init, args<span class="op">=</span>(Y, X), method<span class="op">=</span><span class="st">'BFGS'</span>)</span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Extract results</span></span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>beta_hat <span class="op">=</span> result.x</span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>hessian <span class="op">=</span> result.hess_inv</span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>standard_errors <span class="op">=</span> np.sqrt(np.diag(hessian))</span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: Display coefficient table</span></span>
-<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>coef_table <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Coefficient'</span>: beta_hat,</span>
-<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Std. Error'</span>: standard_errors</span>
-<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>X.columns)</span>
-<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coef_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7caddb6c" class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Data cleaning</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>vars_to_keep <span class="op">=</span> [</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'number_of_reviews'</span>, <span class="st">'days'</span>, <span class="st">'room_type'</span>, <span class="st">'bathrooms'</span>, <span class="st">'bedrooms'</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'price'</span>, <span class="st">'review_scores_cleanliness'</span>, <span class="st">'review_scores_location'</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'review_scores_value'</span>, <span class="st">'instant_bookable'</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure the required columns exist in the DataFrame</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>missing_columns <span class="op">=</span> [col <span class="cf">for</span> col <span class="kw">in</span> vars_to_keep <span class="cf">if</span> col <span class="kw">not</span> <span class="kw">in</span> df.columns]</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[vars_to_keep].dropna()</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Feature engineering</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'instant_bookable'</span>] <span class="op">=</span> (df[<span class="st">'instant_bookable'</span>] <span class="op">==</span> <span class="st">'t'</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.get_dummies(df, columns<span class="op">=</span>[<span class="st">'room_type'</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Build covariate matrix</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>X_cols <span class="op">=</span> [</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'days'</span>, <span class="st">'bathrooms'</span>, <span class="st">'bedrooms'</span>, <span class="st">'price'</span>,</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'review_scores_cleanliness'</span>, <span class="st">'review_scores_location'</span>,</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'review_scores_value'</span>, <span class="st">'instant_bookable'</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>] <span class="op">+</span> [col <span class="cf">for</span> col <span class="kw">in</span> df.columns <span class="cf">if</span> col.startswith(<span class="st">'room_type_'</span>)]</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(df[X_cols]).astype(<span class="bu">float</span>)</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> df[<span class="st">'number_of_reviews'</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4–6: Fit Poisson regression using built-in GLM</span></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.GLM(Y, X, family<span class="op">=</span>sm.families.Poisson())</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> model.fit()</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: Extract coefficients and standard errors</span></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>coef_table <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Coefficient'</span>: result.params,</span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Std. Error'</span>: result.bse</span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>X.columns)</span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coef_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                           Coefficient  Std. Error
-const                              0.0         1.0
-days                               0.0         1.0
-bathrooms                          0.0         1.0
-bedrooms                           0.0         1.0
-price                              0.0         1.0
-review_scores_cleanliness          0.0         1.0
-review_scores_location             0.0         1.0
-review_scores_value                0.0         1.0
-instant_bookable                   0.0         1.0
-room_type_Private room             0.0         1.0
-room_type_Shared room              0.0         1.0</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/opt/conda/lib/python3.12/site-packages/pandas/core/arraylike.py:399: RuntimeWarning: overflow encountered in exp
-  result = getattr(ufunc, method)(*inputs, **kwargs)
-/opt/conda/lib/python3.12/site-packages/numpy/core/_methods.py:49: RuntimeWarning: overflow encountered in reduce
-  return umr_sum(a, axis, dtype, out, keepdims, initial, where)
-/opt/conda/lib/python3.12/site-packages/scipy/optimize/_numdiff.py:590: RuntimeWarning: invalid value encountered in subtract
-  df = fun(x) - f0
-/opt/conda/lib/python3.12/site-packages/pandas/core/arraylike.py:399: RuntimeWarning: overflow encountered in exp
-  result = getattr(ufunc, method)(*inputs, **kwargs)
-/opt/conda/lib/python3.12/site-packages/numpy/core/_methods.py:49: RuntimeWarning: overflow encountered in reduce
-  return umr_sum(a, axis, dtype, out, keepdims, initial, where)</code></pre>
+<pre><code>                           Coefficient    Std. Error
+const                         3.498049  1.609066e-02
+days                          0.000051  3.909218e-07
+bathrooms                    -0.117704  3.749225e-03
+bedrooms                      0.074087  1.991742e-03
+price                        -0.000018  8.326458e-06
+review_scores_cleanliness     0.113139  1.496336e-03
+review_scores_location       -0.076899  1.608903e-03
+review_scores_value          -0.091076  1.803855e-03
+instant_bookable              0.345850  2.890138e-03
+room_type_Private room       -0.010536  2.738448e-03
+room_type_Shared room        -0.246337  8.619793e-03</code></pre>
 </div>
 </div>
 
