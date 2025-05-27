@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your Name">
+<meta name="author" content="Jenny Li">
 <meta name="dcterms.date" content="2025-05-27">
 
 <title>Multinomial Logit Model – jensite</title>
@@ -59,22 +59,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ff4371ef257df69894857e99c6ad0d06.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-74d2d5677529901e73bfe307fa93a8c0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ff4371ef257df69894857e99c6ad0d06.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-74d2d5677529901e73bfe307fa93a8c0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -133,7 +133,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -143,7 +143,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">jensite</span>
     </a>
   </div>
@@ -154,15 +154,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../resume.html"> 
+    <a class="nav-link" href="../../resume.html"> 
 <span class="menu-text">Resume</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
 </ul>
@@ -186,7 +186,11 @@ window.Quarto = {
   <li><a href="#preparing-the-data-for-estimation" id="toc-preparing-the-data-for-estimation" class="nav-link" data-scroll-target="#preparing-the-data-for-estimation">3. Preparing the Data for Estimation</a></li>
   <li><a href="#estimation-via-maximum-likelihood" id="toc-estimation-via-maximum-likelihood" class="nav-link" data-scroll-target="#estimation-via-maximum-likelihood">4. Estimation via Maximum Likelihood</a></li>
   <li><a href="#estimation-via-bayesian-methods" id="toc-estimation-via-bayesian-methods" class="nav-link" data-scroll-target="#estimation-via-bayesian-methods">5. Estimation via Bayesian Methods</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">6. Discussion</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">6. Discussion</a>
+  <ul class="collapse">
+  <li><a href="#interpretation-of-parameter-estimates-had-the-data-not-been-simulated" id="toc-interpretation-of-parameter-estimates-had-the-data-not-been-simulated" class="nav-link" data-scroll-target="#interpretation-of-parameter-estimates-had-the-data-not-been-simulated">Interpretation of Parameter Estimates (Had the Data Not Been Simulated)</a></li>
+  <li><a href="#transition-to-a-multi-level-hierarchical-mnl-model" id="toc-transition-to-a-multi-level-hierarchical-mnl-model" class="nav-link" data-scroll-target="#transition-to-a-multi-level-hierarchical-mnl-model">Transition to a Multi-Level (Hierarchical) MNL Model</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -205,7 +209,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Your Name </p>
+             <p>Jenny Li </p>
           </div>
   </div>
     
@@ -338,28 +342,184 @@ Note
 <section id="preparing-the-data-for-estimation" class="level2">
 <h2 class="anchored" data-anchor-id="preparing-the-data-for-estimation">3. Preparing the Data for Estimation</h2>
 <p>The “hard part” of the MNL likelihood function is organizing the data, as we need to keep track of 3 dimensions (consumer <span class="math inline">\(i\)</span>, covariate <span class="math inline">\(k\)</span>, and product <span class="math inline">\(j\)</span>) instead of the typical 2 dimensions for cross-sectional regression models (consumer <span class="math inline">\(i\)</span> and covariate <span class="math inline">\(k\)</span>). The fact that each task for each respondent has the same number of alternatives (3) helps. In addition, we need to convert the categorical variables for brand and ads into binary variables.</p>
-<p><em>todo: reshape and prep the data</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>conjoint_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"~/Desktop/MSBA/SP/MGTA495b/hw3/conjoint_data.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 1: Prepare the data</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape and prep the data for MNL: include respondent (i), alternative (j), and covariate (k)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>conjoint_data <span class="ot">&lt;-</span> conjoint_data <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">alt_id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">times =</span> <span class="fu">nrow</span>(conjoint_data) <span class="sc">/</span> <span class="dv">3</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">brand_N =</span> <span class="fu">ifelse</span>(brand <span class="sc">==</span> <span class="st">"N"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">brand_P =</span> <span class="fu">ifelse</span>(brand <span class="sc">==</span> <span class="st">"P"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">ad_Yes =</span> <span class="fu">ifelse</span>(ad <span class="sc">==</span> <span class="st">"Yes"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">resp =</span> <span class="fu">as.integer</span>(resp),</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">task =</span> <span class="fu">as.integer</span>(task)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(resp, task, alt_id)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>conjoint_data <span class="ot">&lt;-</span> conjoint_data <span class="sc">%&gt;%</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">brand_N =</span> <span class="fu">ifelse</span>(brand <span class="sc">==</span> <span class="st">"N"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">brand_P =</span> <span class="fu">ifelse</span>(brand <span class="sc">==</span> <span class="st">"P"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">ad_Yes =</span> <span class="fu">ifelse</span>(ad <span class="sc">==</span> <span class="st">"Yes"</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(conjoint_data, brand_N, brand_P, ad_Yes, price))</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> conjoint_data<span class="sc">$</span>choice</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="estimation-via-maximum-likelihood" class="level2">
 <h2 class="anchored" data-anchor-id="estimation-via-maximum-likelihood">4. Estimation via Maximum Likelihood</h2>
-<p><em>todo: Code up the log-likelihood function.</em></p>
-<p><em>todo: Use <code>optim()</code> in R or <code>scipy.optimize()</code> in Python to find the MLEs for the 4 parameters (<span class="math inline">\(\beta_\text{netflix}\)</span>, <span class="math inline">\(\beta_\text{prime}\)</span>, <span class="math inline">\(\beta_\text{ads}\)</span>, <span class="math inline">\(\beta_\text{price}\)</span>), as well as their standard errors (from the Hessian). For each parameter construct a 95% confidence interval.</em></p>
+<p>Now, I started by defining the log-likelihood function for MNL.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 2: Define Log-likelihood for MNL</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>softmax_utilities <span class="ot">&lt;-</span> <span class="cf">function</span>(X, beta) {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  utilities <span class="ot">&lt;-</span> X <span class="sc">%*%</span> <span class="fu">matrix</span>(beta, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(utilities)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (N <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">!=</span> <span class="dv">0</span>) <span class="fu">stop</span>(<span class="st">"Number of rows in X must be a multiple of 3"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  utilities <span class="ot">&lt;-</span> <span class="fu">matrix</span>(utilities, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  exp_u <span class="ot">&lt;-</span> <span class="fu">exp</span>(utilities <span class="sc">-</span> <span class="fu">apply</span>(utilities, <span class="dv">1</span>, max))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  probs <span class="ot">&lt;-</span> exp_u <span class="sc">/</span> <span class="fu">rowSums</span>(exp_u)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">as.vector</span>(<span class="fu">t</span>(probs)))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>log_likelihood <span class="ot">&lt;-</span> <span class="cf">function</span>(beta, X, y) {</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  probs <span class="ot">&lt;-</span> <span class="fu">softmax_utilities</span>(X, beta)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fu">sum</span>(y <span class="sc">*</span> <span class="fu">log</span>(probs <span class="sc">+</span> <span class="fl">1e-12</span>))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, I used optimizer to find the MLEs for the 4 parameters (<span class="math inline">\(\beta_\text{netflix}\)</span>, <span class="math inline">\(\beta_\text{prime}\)</span>, <span class="math inline">\(\beta_\text{ads}\)</span>, <span class="math inline">\(\beta_\text{price}\)</span>), as well as their standard errors (from the Hessian). For each parameter, a 95% confidence interval was constructed. ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 3: MLE Estimation</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>init_beta <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">ncol</span>(X))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mle_result <span class="ot">&lt;-</span> <span class="fu">optim</span>(<span class="at">par =</span> init_beta, <span class="at">fn =</span> log_likelihood, <span class="at">X =</span> X, <span class="at">y =</span> y, <span class="at">hessian =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>mle_beta <span class="ot">&lt;-</span> mle_result<span class="sc">$</span>par</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">solve</span>(mle_result<span class="sc">$</span>hessian)))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="ot">&lt;-</span> mle_beta <span class="sc">-</span> z <span class="sc">*</span> se</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="ot">&lt;-</span> mle_beta <span class="sc">+</span> z <span class="sc">*</span> se</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>mle_results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameter =</span> <span class="fu">c</span>(<span class="st">"brand_N"</span>, <span class="st">"brand_P"</span>, <span class="st">"ad_Yes"</span>, <span class="st">"price"</span>),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Estimate =</span> mle_beta,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">StdErr =</span> se,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">CI_Lower =</span> ci_lower,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">CI_Upper =</span> ci_upper</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(mle_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Parameter    Estimate      StdErr   CI_Lower   CI_Upper
+1   brand_N  0.94121992 0.111038943  0.7235876  1.1588522
+2   brand_P  0.50181537 0.111099319  0.2840647  0.7195660
+3    ad_Yes -0.73195279 0.087808072 -0.9040534 -0.5598521
+4     price -0.09947132 0.006333389 -0.1118845 -0.0870581</code></pre>
+</div>
+<p>:::</p>
+<p>The maximum likelihood estimates (MLE) provide insights into how each attribute affects the utility of a streaming service. The coefficient for <code>brand_N</code> is 0.94, indicating that—holding other factors constant—Netflix significantly increases utility relative to the base level (Hulu). Similarly, <code>brand_P</code> has a positive and significant effect (0.50), but smaller than that of Netflix, suggesting Prime is preferred over Hulu, though not as strongly. The coefficient for <code>ad_Yes</code> is -0.73, showing that the presence of ads substantially reduces utility, consistent with consumer preference for ad-free experiences. Finally, the coefficient on <code>price</code> is -0.099, confirming that higher prices lead to lower utility. All coefficients are statistically significant at the 95% confidence level, as their intervals exclude zero, indicating strong evidence that these attributes influence consumer choice.</p>
 </section>
 <section id="estimation-via-bayesian-methods" class="level2">
 <h2 class="anchored" data-anchor-id="estimation-via-bayesian-methods">5. Estimation via Bayesian Methods</h2>
-<p><em>todo: code up a metropolis-hasting MCMC sampler of the posterior distribution. Take 11,000 steps and throw away the first 1,000, retaining the subsequent 10,000.</em></p>
-<p><em>hint: Use N(0,5) priors for the betas on the binary variables, and a N(0,1) prior for the price beta.</em></p>
-<p>_hint: instead of calculating post=lik*prior, you can work in the log-space and calculate log-post = log-lik + log-prior (this should enable you to re-use your log-likelihood function from the MLE section just above)_</p>
-<p><em>hint: King Markov (in the video) use a candidate distribution of a coin flip to decide whether to move left or right among his islands. Unlike King Markov, we have 4 dimensions (because we have 4 betas) and our dimensions are continuous. So, use a multivariate normal distribution to pospose the next location for the algorithm to move to. I recommend a MNV(mu, Sigma) where mu=c(0,0,0,0) and sigma has diagonal values c(0.05, 0.05, 0.05, 0.005) and zeros on the off-diagonal. Since this MVN has no covariances, you can sample each dimension independently (so 4 univariate normals instead of 1 multivariate normal), where the first 3 univariate normals are N(0,0.05) and the last one if N(0,0.005).</em></p>
-<p><em>todo: for at least one of the 4 parameters, show the trace plot of the algorithm, as well as the histogram of the posterior distribution.</em></p>
-<p><em>todo: report the 4 posterior means, standard deviations, and 95% credible intervals and compare them to your results from the Maximum Likelihood approach.</em></p>
+<p>Then I coded up a metropolis-hasting MCMC sampler of the posterior distribution and took 11,000 steps and threw away the first 1,000, retaining the subsequent 10,000.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 4: Bayesian Estimation via MCMC</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>log_prior <span class="ot">&lt;-</span> <span class="cf">function</span>(beta) {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(<span class="fu">dnorm</span>(beta[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="dv">0</span>, <span class="dv">5</span>, <span class="at">log =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span> <span class="fu">dnorm</span>(beta[<span class="dv">4</span>], <span class="dv">0</span>, <span class="dv">1</span>, <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>log_posterior <span class="ot">&lt;-</span> <span class="cf">function</span>(beta, X, y) {</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fu">log_likelihood</span>(beta, X, y) <span class="sc">+</span> <span class="fu">log_prior</span>(beta)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>n_iter <span class="ot">&lt;-</span> <span class="dv">11000</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>burn_in <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>beta_chain <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> n_iter, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>beta_current <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">4</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>log_post_current <span class="ot">&lt;-</span> <span class="fu">log_posterior</span>(beta_current, X, y)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>proposal_sd <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.05</span>, <span class="fl">0.05</span>, <span class="fl">0.005</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_iter) {</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  beta_proposal <span class="ot">&lt;-</span> beta_current <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">4</span>, <span class="dv">0</span>, proposal_sd)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  log_post_proposal <span class="ot">&lt;-</span> <span class="fu">log_posterior</span>(beta_proposal, X, y)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  accept_ratio <span class="ot">&lt;-</span> <span class="fu">exp</span>(log_post_proposal <span class="sc">-</span> log_post_current)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> accept_ratio) {</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    beta_current <span class="ot">&lt;-</span> beta_proposal</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    log_post_current <span class="ot">&lt;-</span> log_post_proposal</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  beta_chain[t, ] <span class="ot">&lt;-</span> beta_current</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>beta_chain_burned <span class="ot">&lt;-</span> beta_chain[(burn_in<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>n_iter, ]</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>posterior_means <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(beta_chain_burned)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>posterior_std <span class="ot">&lt;-</span> <span class="fu">apply</span>(beta_chain_burned, <span class="dv">2</span>, sd)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>posterior_ci_lower <span class="ot">&lt;-</span> <span class="fu">apply</span>(beta_chain_burned, <span class="dv">2</span>, quantile, <span class="at">probs =</span> <span class="fl">0.025</span>)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>posterior_ci_upper <span class="ot">&lt;-</span> <span class="fu">apply</span>(beta_chain_burned, <span class="dv">2</span>, quantile, <span class="at">probs =</span> <span class="fl">0.975</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I also created a trace plot of price of the algorithm, as well as the histogram of the posterior distribution. ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot side-by-side: Trace plot and posterior histogram for brand_N (Netflix)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Trace plot</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(beta_chain_burned[, <span class="dv">1</span>], <span class="at">type =</span> <span class="st">'l'</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Trace Plot for brand_N"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Iteration"</span>, <span class="at">ylab =</span> <span class="st">"Beta (brand_N)"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram with density</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(beta_chain_burned[, <span class="dv">1</span>], <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Posterior Distribution for brand_N"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Beta (brand_N)"</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(beta_chain_burned[, <span class="dv">1</span>]), <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hw3_questions_files/figure-html/trace-hist-brandN-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+<p>:::</p>
+<p>The following are the posterior means, standard deviations, and 95% credible intervals derived from the Bayesian approach. ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bayes_results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameter =</span> <span class="fu">c</span>(<span class="st">"brand_N"</span>, <span class="st">"brand_P"</span>, <span class="st">"ad_Yes"</span>, <span class="st">"price"</span>),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">PosteriorMean =</span> posterior_means,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">StdDev =</span> posterior_std,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">CI_Lower =</span> posterior_ci_lower,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">CI_Upper =</span> posterior_ci_upper</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bayes_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Parameter PosteriorMean     StdDev   CI_Lower    CI_Upper
+1   brand_N    0.94581034 0.11650908  0.7155136  1.17440147
+2   brand_P    0.50775038 0.11519476  0.2784474  0.72953416
+3    ad_Yes   -0.72747604 0.08960441 -0.9007941 -0.55444164
+4     price   -0.09971126 0.00624895 -0.1117756 -0.08755806</code></pre>
+</div>
+<p>::: The results from the Bayesian estimation closely mirror those obtained via Maximum Likelihood Estimation (MLE). For all four parameters—brand_N, brand_P, ad_Yes, and price—the posterior means are nearly identical to the MLE point estimates. This similarity indicates that the data are sufficiently informative, meaning the Bayesian posterior is dominated by the likelihood rather than the prior. The 95% credible intervals from the Bayesian approach also align closely with the 95% confidence intervals from MLE, although they tend to be slightly more conservative, reflecting the additional uncertainty captured by Bayesian inference.</p>
+<p>Specifically, the coefficient for brand_N is approximately 0.94 in both models, confirming a strong preference for Netflix over the baseline (Hulu). brand_P also has a positive and significant effect (~0.50), though smaller than Netflix’s. The ad_Yes coefficient remains strongly negative (-0.73), showing that consumers clearly prefer ad-free services. Finally, the price coefficient is around -0.10, indicating that higher prices reduce utility, as expected.</p>
+<p>Overall, the agreement between methods adds credibility to the findings and reinforces the preference hierarchy among brands and the negative effects of ads and price. The Bayesian approach adds the benefit of full posterior distributions, which are useful for inference, uncertainty quantification, and potential extensions like hierarchical modeling.</p>
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">6. Discussion</h2>
-<p><em>todo: Suppose you did not simulate the data. What do you observe about the parameter estimates? What does <span class="math inline">\(\beta_\text{Netflix} &gt; \beta_\text{Prime}\)</span> mean? Does it make sense that <span class="math inline">\(\beta_\text{price}\)</span> is negative?</em></p>
-<p><em>todo: At a high level, discuss what change you would need to make in order to simulate data from — and estimate the parameters of — a multi-level (aka random-parameter or hierarchical) model. This is the model we use to analyze “real world” conjoint data.</em></p>
+<section id="interpretation-of-parameter-estimates-had-the-data-not-been-simulated" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-of-parameter-estimates-had-the-data-not-been-simulated">Interpretation of Parameter Estimates (Had the Data Not Been Simulated)</h3>
+<p>If the data had come from a real-world study rather than being simulated, the parameter estimates would be interpreted as empirical measures of consumer preferences. The fact that <span class="math inline">\(\beta_{\text{Netflix}} &gt; \beta_{\text{Prime}}\)</span> indicates that, all else equal, respondents prefer Netflix over Amazon Prime, which itself is preferred over Hulu (the omitted baseline). This reflects relative brand value or reputation as perceived by consumers.</p>
+<p>The negative estimate for <span class="math inline">\(\beta_{\text{price}}\)</span> confirms that higher prices reduce utility, consistent with standard economic theory and consumer behavior. A negative price coefficient is both expected and desirable from a modeling perspective—it validates that the model captures sensitivity to price in the correct direction.</p>
+</section>
+<section id="transition-to-a-multi-level-hierarchical-mnl-model" class="level3">
+<h3 class="anchored" data-anchor-id="transition-to-a-multi-level-hierarchical-mnl-model">Transition to a Multi-Level (Hierarchical) MNL Model</h3>
+<p>To simulate and estimate a hierarchical (random-parameter) MNL model, a respondent-level heterogeneity in the preference parameters would be introduced. Instead of estimating a single global set of <span class="math inline">\(\beta\)</span> coefficients shared by all individuals, a hierarchical model assumes each individual <span class="math inline">\(i\)</span> has their own vector <span class="math inline">\(\beta_i\)</span>, drawn from a population-level distribution:</p>
+<p><span class="math display">\[
+\beta_i \sim \mathcal{N}(\mu, \Sigma)
+\]</span></p>
+<p>This requires the following changes:</p>
+<ul>
+<li><strong>Simulate data</strong> such that each respondent has their own unique <span class="math inline">\(\beta_i\)</span>, drawn from a known multivariate normal distribution.</li>
+<li><strong>Model estimation</strong> would typically use Bayesian methods (e.g., Hierarchical Bayes via MCMC), or Maximum Simulated Likelihood approaches.</li>
+<li><strong>Restructure your MCMC sampler</strong> to update the population-level parameters <span class="math inline">\((\mu, \Sigma)\)</span> and the individual-level betas <span class="math inline">\(\beta_i\)</span> jointly.</li>
+<li><strong>Require repeated observations</strong> per individual (multiple tasks) to disentangle within-person noise (<span class="math inline">\(\epsilon_{ij}\)</span>) from true heterogeneity (<span class="math inline">\(\beta_i\)</span>).</li>
+</ul>
+<p>This structure is more realistic for modeling actual consumer behavior, as it reflects the fact that not all respondents have identical preferences.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
